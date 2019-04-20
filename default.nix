@@ -3,8 +3,8 @@
 }:
 let
   inherit (pkgs.haskell.lib) buildFromSdist enableCabalFlag sdistTarball buildStrictly;
-  inherit (pkgs.haskell.packages) ghc802;
-  ghcjs = pkgs.haskell.packages.ghcjsHEAD.override {
+  inherit (pkgs.haskell.packages) ghc864;
+  ghcjs = pkgs.haskell.packages.ghcjs86.override {
      overrides = self: super: {
        jsaddle-warp = super.callPackage ./jsaddle-warp-ghcjs.nix {};
      };
@@ -12,7 +12,7 @@ let
   inherit (pkgs.lib) overrideDerivation optionalString;
   inherit (pkgs.stdenv) isDarwin;
   inherit (pkgs) closurecompiler;
-  miso-ghc = ghc802.callPackage ./miso-ghc.nix { };
+  miso-ghc = ghc864.callPackage ./miso-ghc.nix { };
   miso-ghcjs = (ghcjs.callPackage ./miso-ghcjs.nix { }).overrideDerivation (drv: {
     doHaddock = haddock;
     postInstall = ''
